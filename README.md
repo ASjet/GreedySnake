@@ -1,5 +1,5 @@
 # GreedySnake
-GreedySnake CMD Edition in Windows
+GreedySnake CMD Edition for Windows 10
 
 
 
