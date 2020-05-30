@@ -1,7 +1,7 @@
 ﻿/*
 * Greedy Snake
 * Fri May 29 23:32:37 CST 2020
-* @Version 1.0
+* @Version 1.1
 * @Environment Win10/VSC/VS2019(v142)
 * @Auther ITFS777
 * @Email Aryan.ITFS@iCloud.com
