@@ -39,35 +39,37 @@ void Game::printFrame(void) const
     int i = width;
     while (i--)
         board += block;
-    // Print celling
+
     cout << board;
-    // Print body
+
     i = height;
     while (i--)
         cout << body;
-    // Print feet
+
     cout << board;
 }
 ////////////////////////////////////////////////////////////////////////////////
 void Game::menu(void)
 {
-    printFrame();
-    // Jump to chosen option
-    switch (Selector({Option(string("Start  Game"), Point((width / 2) - 2, (height / 2) - 2)),
-                      Option(string("Setting"), Point((width / 2) - 1, height / 2)),
-                      Option(string("Quit   Game"), Point((width / 2) - 2, (height / 2) + 2))}))
+    while (true)
     {
-    case 0:
-        start();
-        break;
-    case 1:
-        setting();
-        break;
-    case 2:
-        quit();
-        break;
-    default:
-        break;
+        printFrame();
+        switch (Selector({Option(string("Start  Game"), Point((width / 2) - 2, (height / 2) - 2)),
+                          Option(string("Setting"), Point((width / 2) - 1, height / 2)),
+                          Option(string("Quit   Game"), Point((width / 2) - 2, (height / 2) + 2))}))
+        {
+        case 0:
+            start();
+            break;
+        case 1:
+            setting();
+            break;
+        case 2:
+            quit();
+            break;
+        default:
+            break;
+        }
     }
 }
 ////////////////////////////////////////////////////////////////////////////////
@@ -100,7 +102,7 @@ void Game::setting(void)
         cin >> speed;
         SetCursorPosition(0, height / 2);
         // Clear input line
-        cout << "■                                                                                ■";
+        cout << string("■") + string(width * 2, ' ') + string("■");
         SetCursorPosition((width / 2) - 4, (height / 2) - 1);
         cout << "Speed changed to " << speed;
         SetCursorPosition((width / 2) - 5, (height / 2) + 1);
@@ -110,7 +112,6 @@ void Game::setting(void)
     default:
         break;
     }
-    menu();
 }
 ////////////////////////////////////////////////////////////////////////////////
 void Game::quit(void)
@@ -118,12 +119,10 @@ void Game::quit(void)
     printFrame();
     SetCursorPosition((width / 2) - 4, (height / 2) - 1);
     cout << "ARE YOU SURE TO QUIT?";
-    if (!Selector(
+    if (Selector(
             {Option(string("YES"), Point((width / 2) - 2, (height / 2) + 1)),
-             Option(string("NO"), Point((width / 2) + 1, (height / 2) + 1))}))
+             Option(string("NO"), Point((width / 2) + 1, (height / 2) + 1))}) == 0)
         exit(0);
-    else
-        menu();
 }
 ////////////////////////////////////////////////////////////////////////////////
 void Game::start(void)
@@ -152,6 +151,14 @@ void Game::start(void)
                 printFrame();
                 snake.printBody();
                 food.print();
+                char tit[30];
+                for(int i = 5; i > 0; --i)
+                {
+                    sprintf(tit,"title Ready(%.1fs)",i/10.0);
+                    system(tit);
+                    Sleep(100);
+                }
+                system("title GreedySnake");
                 break;
             default:
                 break;
@@ -171,28 +178,31 @@ void Game::start(void)
     printFrame();
     SetCursorPosition((width / 2) - 2, (height / 2) - 4);
     cout << "GAME    OVER";
-    switch (Selector(
-        {Option(string("Replay"), Point((width / 2) - 1, (height / 2) - 1)),
-         Option(string("Back to Main Menu"), Point((width / 2) - 3, (height / 2) + 1))}))
-    {
-    case 0:
+    if (Selector(
+            {Option(string("Replay"), Point((width / 2) - 1, (height / 2) - 1)),
+             Option(string("Back to Main Menu"), Point((width / 2) - 3, (height / 2) + 1))}) == 0)
         start();
-        break;
-    case 1:
-        menu();
-        break;
-    default:
-        break;
-    }
 }
 ////////////////////////////////////////////////////////////////////////////////
 void Game::pause(void)
 {
     printFrame();
-    SetCursorPosition((width / 2) - 2, (height / 2) - 1);
+    SetCursorPosition((width / 2) - 2, (height / 2) - 4);
     cout << "Game   Pause";
-    if (Selector(
-            {Option(string("Continue"), Point((width / 2) - 5, (height / 2) + 1)),
-             Option(string("Back to Menu"), Point((width / 2) + 2, (height / 2) + 1))}))
+    switch (Selector(
+        {Option(string("Continue"), Point((width / 2) - 1, (height / 2) - 2)),
+         Option(string("Setting"), Point((width / 2) - 1, height / 2)),
+         Option(string("Back to Menu"), Point((width / 2) - 2, (height / 2) + 2))}))
+    {
+    case 0:
+        break;
+    case 1:
+        setting();
+        pause();
+        break;
+    case 2:
         menu();
+    default:
+        break;
+    }
 }
