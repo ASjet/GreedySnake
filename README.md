@@ -1,7 +1,9 @@
 # GreedySnake
 GreedySnake CMD Edition for Windows 10
 
+![QQ图片20200612195311](http://106.15.72.2/disk/pic/itfs777/greedysnake/start.png)
 
+![QQ截图20200612195441](http://106.15.72.2/disk/pic/itfs777/greedysnake/running.png)
 
 Release Notes
 
