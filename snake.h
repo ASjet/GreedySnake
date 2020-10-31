@@ -6,7 +6,7 @@
 class Snake
 {
 public:
-    enum Direction
+    enum class Direction:char
     {
         UP = 1,
         DOWN = 2,

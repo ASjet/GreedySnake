@@ -4,7 +4,7 @@
 class Game
 {
 public:
-    enum Game_Status
+    enum class Game_Status:char
     {
         NEW = 1,
         CONTINUE
