@@ -5,9 +5,19 @@ GreedySnake C++ Edition for Windows10
 
 ![Running](http://106.15.72.2/disk/pic/itfs777/greedysnake/running.png)
 
-Release Notes
+If there is abnormal with the display of "■", please change font to Heiti(黑体).
 
----
+
+
+
+
+
+
+
+
+
+
+## Release Notes
 
 2020.5.30	[v1.1](http://106.15.72.2/disk/release/GreedySnake/GreedySnake_1.1.exe)
 
